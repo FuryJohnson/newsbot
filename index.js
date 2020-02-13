@@ -45,7 +45,7 @@ function extractNews(news, htmlPage) {
         console.log("cant find cleanText");
         return;
     }
-    const oldNews = NewsStore[news];
+    const oldNews = newsStore[news];
     if (oldNews.length > 0 && oldNews != cleanText) {
         bot.telegram.sendMessage(telegramId, cleanText);
     }
@@ -54,7 +54,7 @@ function extractNews(news, htmlPage) {
 
 
 function poll() {
-    for (let key in NewsStore) {
+    for (let key in newsStore) {
         const extractNewsBinded = extractNews.bind(null, key);
         cloudscraper.get(key).then(extractNewsBinded, console.error);
     }
