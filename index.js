@@ -11,8 +11,8 @@ const fs = require('fs');
 //---------------------------------------
 
 //global vars
-const token = fs.readFileSync('1053577838:AAGwJ-bZMeDRBBvc_8QHxIMYLy5pfFArsZU', 'utf8').split("\n")[0];
-const telegramId = fs.readFileSync('1582822', 'utf8');
+const token = fs.readFileSync('token', 'utf8').split("\n")[0];
+const telegramId = fs.readFileSync('id', 'utf8');
 //slow access
 let newsStore =
 {
