@@ -11,8 +11,8 @@ const fs = require('fs');
 //---------------------------------------
 
 //global vars
-const token = fs.readFileSync('token', 'utf8').split("\n")[0];
-const telegramId = fs.readFileSync('telegramId', 'utf8');
+const token = fs.readFileSync('1053577838:AAGwJ-bZMeDRBBvc_8QHxIMYLy5pfFArsZU', 'utf8').split("\n")[0];
+const telegramId = fs.readFileSync('1582822', 'utf8');
 //slow access
 let newsStore =
 {
@@ -23,7 +23,7 @@ let newsStore =
 const bot = new Telegraf(token);
 
 bot.start((ctx) => ctx.reply('Hello, My Friend We are ESET!!!!!!'))
-bot.hears('hi', (ctx) => { ctx.reply(newsStore); })
+bot.hears('hi', (ctx) => ctx.reply('Hello, my friend, We are ESET!!!!!!!!👍'))
 bot.launch();
 
 //main logic ----------------------
