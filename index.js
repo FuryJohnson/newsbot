@@ -20,12 +20,13 @@ bot.hears('hi', (ctx) => ctx.reply('Hello, my friend, We are ESET!!!!!!!!👍'))
 bot.hears('/memes', function(ctx) {
   let XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
   let xhr = new XMLHttpRequest();
-  xhr.open("GET", "https://meme-api.herokuapp.com/gimme", false);
+  xhr.open("GET", "https://meme-api.herokuapp.com/gimme");
   xhr.responseType = "json";
 
   xhr.send();
-      let responseObj = xhr.response;
-  ctx.reply(responseObj.url)
-
+  xhr.onload = function() {
+    let responseObj = xhr.response;
+    ctx.reply(responseObj.url);
+  };
 });
 bot.launch();
