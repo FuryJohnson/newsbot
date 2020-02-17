@@ -24,7 +24,6 @@ xhr.responseType = "json";
 xhr.send();
 
 //bot -----------------
-const bot = new Telegraf(token);
 
 bot.start((ctx) => ctx.reply('Hello, My Friend We are ESET!!!!!!'))
 bot.hears('hi', (ctx) => ctx.reply('Hello, my friend, We are ESET!!!!!!!!👍')),
@@ -33,40 +32,3 @@ xhr.onload = function() {
     bot.hears('/memes', (ctx) => { ctx.reply(responseObj.url); })
   };
 bot.launch();
-
-//main logic ----------------------
-function extractNews(news, htmlPage) {
-    const elements = $(htmlPage);
-    const listOfNews = elements.find('tbody').html();
-    if (listOfNews == undefined) {
-        console.log("cant find news");
-        return;
-    }
-    // const lastNews = listOfNews.split('\n').filter(NewsStr => NewsStr.length > 5)[0];
-
-    // if (lastNews == undefined) {
-    //     console.log("cant find last news");
-    //     return;
-    // }
-    const cleanText = lastNews.replace("</a>", " || ").replace(/<\/?[^>]+(>|$)/g, "");
-    if (cleanText == undefined) {
-        console.log("cant find cleanText");
-        return;
-    }
-    const oldNews = newsStore[news];
-    if (oldNews.length > 0 && oldNews != cleanText) {
-        bot.telegram.sendMessage(telegramId, cleanText);
-    }
-    newsStore[news] = cleanText;
-}
-
-
-function poll() {
-    for (let key in NewsStore) {
-        const extractNewsBinded = extractNews.bind(null, key);
-        cloudscraper.get(key).then(extractNewsBinded, console.error);
-    }
-    setTimeout(poll, 15 * 60 * 1000);
-}
-
-poll();
