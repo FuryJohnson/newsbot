@@ -15,9 +15,7 @@ const bot = new Telegraf ("token")
 
 //bot -----------------
 
-bot.start((ctx) => ctx.reply('Hello, My Friend'))
-bot.hears('hi', (ctx) => ctx.reply('Hello, my friend, We are ESET!!!!!!!!👍'));
-bot.hears('/memes', function(ctx) {
+function Url(ctx) {
   let XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
   let xhr = new XMLHttpRequest();
   xhr.open("GET", "https://meme-api.herokuapp.com/gimme");
@@ -25,8 +23,11 @@ bot.hears('/memes', function(ctx) {
 
   xhr.send();
   xhr.onload = function() {
-    let responseObj = xhr.response;
-    ctx.reply(responseObj.url);
+    ctx.reply(xhr.response.url);
   };
-});
+};
+
+bot.start((ctx) => ctx.reply('Hello, My Friend'))
+bot.hears('hi', (ctx) => ctx.reply('Hello, my friend, We are ESET!!!!!!!!👍'));
+bot.hears('/memes', (ctx) => ctx.reply(Url(xrh.onload)));
 bot.launch();
